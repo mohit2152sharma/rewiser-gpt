@@ -15,7 +15,10 @@ A github action to manage your daily devlogs and help you revise them regularly.
 
 For example, if following is the text for roster: 
 ```
-"database replicas are used to enhance read scalability and guard against data loss. Application can write only to primary node, while the application can read from primary as well as replicas. Asynchronous replication (or some other) mechanism is used to keep the [[replicas]] synchronised with primary node."
+"database replicas are used to enhance read scalability and guard against data loss. 
+Application can write only to primary node, while the application can read from primary 
+as well as replicas. Asynchronous replication (or some other) mechanism is used to keep
+the replicas synchronised with primary node."
 ```
 
 Chatgpt can generate the following:
@@ -39,14 +42,28 @@ Synced by replication, all works fine!
 ```
 3. Using storytelling:
 ```
-Once upon a time, in the realm of databases, there was a kingdom ruled by a powerful primary node. The primary node had the unique ability to receive messages and updates from the kingdom's applications, allowing it to maintain the most up-to-date information.
+Once upon a time, in the realm of databases, there was a kingdom ruled by a powerful primary node.
+The primary node had the unique ability to receive messages and updates from the kingdom's applications,
+allowing it to maintain the most up-to-date information.
 
-However, the primary node realized that it needed some assistance to handle the increasing demand for reading data. So, it decided to create replicas, faithful copies of itself, to enhance read scalability. These replicas were like trusted advisors, ready to serve the applications' requests for information.
+However, the primary node realized that it needed some assistance to handle the increasing demand for 
+reading data. So, it decided to create replicas, faithful copies of itself, to enhance read scalability.
+These replicas were like trusted advisors, ready to serve the applications' requests for information.
 
-The applications, though, were only allowed to send their messages to the primary node. It was like a secret passage guarded by the primary node, ensuring the integrity of the data. But when it came to reading data, the applications had more freedom. They could seek knowledge not only from the primary node but also from the replicas, like exploring different corners of the kingdom.
+The applications, though, were only allowed to send their messages to the primary node. It was like a 
+secret passage guarded by the primary node, ensuring the integrity of the data. But when it came to 
+reading data, the applications had more freedom. They could seek knowledge not only from the primary 
+node but also from the replicas, like exploring different corners of the kingdom.
 
-To maintain harmony and ensure that all replicas were in sync with the primary node, a special mechanism called asynchronous replication was put in place. It was like a magical thread that connected the replicas and the primary node. Whenever a change occurred in the primary node, it sent whispers through this thread, informing the replicas to update themselves accordingly. This way, they stayed synchronized, preventing any inconsistencies or data loss.
+To maintain harmony and ensure that all replicas were in sync with the primary node, a special 
+mechanism called asynchronous replication was put in place. It was like a magical thread that connected 
+the replicas and the primary node. Whenever a change occurred in the primary node, it sent whispers 
+through this thread, informing the replicas to update themselves accordingly. This way, they stayed 
+synchronized, preventing any inconsistencies or data loss.
 
-And so, the kingdom's database thrived with the power of replicas, providing both read scalability and data protection. The primary node ruled over the applications, while the replicas served as trustworthy companions, all working together through the enchantment of asynchronous replication. The end.
+And so, the kingdom's database thrived with the power of replicas, providing both read scalability 
+and data protection. The primary node ruled over the applications, while the replicas served as 
+trustworthy companions, all working together through the enchantment of asynchronous replication. 
+The end.
 ```
 
