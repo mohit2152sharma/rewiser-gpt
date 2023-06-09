@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Test Action
-        uses: mohit2152sharma/rewiser-gpt@v0.0.1
+        uses: mohit2152sharma/rewiser-gpt@main
         with:
           name: "Mohit"
