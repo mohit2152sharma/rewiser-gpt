@@ -6,4 +6,4 @@ COPY . .
 RUN pip install -r requirements.txt
 RUN chmod +x hello.py 
 
-ENTRYPOINT ["hello.py"]
+ENTRYPOINT ["/hello.py"]
