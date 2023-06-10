@@ -9,12 +9,15 @@ jobs:
   send_email:
     name: send email
     runs-on: ubuntu-latest
+    env:
+      DOC_DIRECTORY: "tests"
     steps:
       - name: Test Action
         uses: mohit2152sharma/rewiser-gpt@main
         with:
           to_email: ${{ secrets.TO_EMAIL }}
           from_email: ${{ secrets.FROM_EMAIL }}
+          doc_directory: ${{ env.DOC_DIRECTORY }}
           smtp_hostname: ${{ secrets.SMTP_HOSTNAME }}
           smtp_port: ${{ secrets.SMTP_PORT }}
           smtp_username: ${{ secrets.SMTP_USERNAME }}

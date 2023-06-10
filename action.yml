@@ -9,6 +9,9 @@ inputs:
   from_email:
     description: "The email Id to send from"
     required: true 
+  doc_directory:
+    description: "The directory to read files from"
+    required: true
   smtp_hostname:
     description: "SMTP Hostname/endpoint"
     required: true
