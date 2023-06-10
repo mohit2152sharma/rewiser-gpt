@@ -3,8 +3,6 @@ on:
   schedule:
     - cron: '30 01 * * *'
   workflow_dispatch:
-env:
-  PYTHONUNBUFFERED: "1"
 jobs:
   send_email:
     name: send email
@@ -12,6 +10,7 @@ jobs:
     env:
       DOC_DIRECTORY: "tests"
       ACTIONS_STEP_DEBUG: true
+      PYTHONUNBUFFERED: 127
     steps:
       - name: Test Action
         uses: mohit2152sharma/rewiser-gpt@main
