@@ -1,20 +1,36 @@
 # this file is used by github marketplace
 # it has to be named exactly `action.yml`
-
 name: "rewiser-gpt"
-description: "send dev logs via email" # TODO: update the description later
+description: "send rewiser email"
 inputs:
-  name:
-    description: "test for checking action" # TODO: fill with actual key value pair
+  to_email:
+    description: "The email Id to sent to"
     required: true
-outputs: 
-  message:
-    description: "output message" # TODO: update with correct output 
+  from_email:
+    description: "The email Id to send from"
+    required: true 
+  smtp_hostname:
+    description: "SMTP Hostname/endpoint"
+    required: true
+  smtp_port:
+    description: "SMTP server port"
+    required: true
+  smtp_username:
+    description: "SMTP server username, used for logging in"
+    required: true
+  smtp_password:
+    description: "SMTP server password, used for logging in"
+    required: true
 
 runs:
   using: docker
   image: Dockerfile
   args:
-    - ${{ inputs.name }}
+    - ${{ inputs.to_email }}
+    - ${{ inputs.from_email }}
+    - ${{ inputs.smtp_hostname }}
+    - ${{ inputs.smtp_port }}
+    - ${{ inputs.smtp_username }}
+    - ${{ inputs.smtp_password }}
     
     
