@@ -1,3 +1,4 @@
+from functools import wraps
 import os
 import logging
 import markdown
@@ -46,7 +47,8 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
     """
 
     def decorate(func):
-        def wraps(*args, **kwargs):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
             # read the parameter space of function
             if os.getenv("GITHUB_ACTIONS") == "true":
                 func_var = var.replace("INPUT_", "").lower()
@@ -73,7 +75,7 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
             result = func(*args, **kwargs)
             return result
 
-        return wraps
+        return wrapper
 
     return decorate
 
