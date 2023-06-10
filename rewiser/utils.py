@@ -2,7 +2,7 @@ import os
 import logging
 import markdown
 import inspect
-from datetime import datetime, _Date
+from datetime import datetime
 from typing import Any, Callable, Tuple
 
 
@@ -106,6 +106,6 @@ def smtp_creds(
     return smtp_hostname, smtp_port, smtp_username, smtp_password  # type: ignore
 
 
-def file_created_date(file: str) -> _Date:
+def file_created_date(file: str):
     t = os.path.getctime(file)
     return datetime.fromtimestamp(t).date()
