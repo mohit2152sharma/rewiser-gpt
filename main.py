@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python
 
 from rewiser.files import concat_files, sort_files
 import logging
