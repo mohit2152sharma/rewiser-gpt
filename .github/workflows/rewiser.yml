@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '30 01 * * *'
   workflow_dispatch:
+env:
+  PYTHONUNBUFFERED: "1"
 jobs:
   send_email:
     name: send email

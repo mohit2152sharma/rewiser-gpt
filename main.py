@@ -13,7 +13,7 @@ def main() -> None:
     # select files
     selected_files = pseudo_anki(filenames=files)
     logging.info(f"selected files: {selected_files}")
-
+    print(f"selected files: {selected_files}")
     # concatenate files
     content = concat_files(filepaths=selected_files)
 
@@ -21,6 +21,7 @@ def main() -> None:
     emailer = Emailer(body=content)
     emailer.send_email()
     logging.info(f"Email send successfully to: {emailer.to} from: {emailer.frm}")
+    print("email send")
 
 
 if __name__ == "__name__":
