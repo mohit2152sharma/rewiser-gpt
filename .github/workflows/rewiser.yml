@@ -1,0 +1,19 @@
+name: Send Devlogs Rewiser Email
+on:
+  schedule:
+    - cron: '30 01 * * *'
+  workflow_dispatch:
+jobs:
+  send_email:
+    name: send email
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Action
+        uses: mohit2152sharma/rewiser-gpt@main
+        with:
+          to_email: ${{ secrets.TO_EMAIL }}
+          from_email: ${{ secrets.FROM_EMAIL }}
+          smtp_hostname: ${{ secrets.SMTP_HOSTNAME }}
+          smtp_port: ${{ secrets.SMTP_PORT }}
+          smtp_username: ${{ secrets.SMTP_USERNAME }}
+          smtp_password: ${{ secrets.SMTP_PASSWORD }}
