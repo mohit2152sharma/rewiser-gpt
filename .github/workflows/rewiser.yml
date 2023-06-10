@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOC_DIRECTORY: "tests"
+      ACTIONS_STEP_DEBUG: true
     steps:
       - name: Test Action
         uses: mohit2152sharma/rewiser-gpt@main
