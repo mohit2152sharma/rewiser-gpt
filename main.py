@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+
 from rewiser.files import concat_files, sort_files
 import logging
 from rewiser.anki import pseudo_anki
