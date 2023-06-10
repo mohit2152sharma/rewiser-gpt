@@ -1,4 +1,4 @@
-from rewiser.utils import md_to_html, read_env_var, smtp_creds
+from rewiser.utils import md_to_html, check_val
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import ssl
@@ -18,20 +18,13 @@ class Emailer:
         smtp_password: str | None = None,
     ) -> None:
         self.body = body
-        self.to = to if to else read_env_var("TO_EMAIL")
-        self.frm = frm if frm else read_env_var("FROM_EMAIL")
+        self.to = check_val(to, "TO_EMAIL")
+        self.frm = check_val(frm, "FROM_EMAIL")
         self.subject = subject
-        (
-            self.smtp_hostname,
-            self.smtp_port,
-            self.smtp_username,
-            self.smtp_password,
-        ) = smtp_creds(
-            smtp_hostname=smtp_hostname,
-            smtp_port=smtp_port,
-            smtp_username=smtp_username,
-            smtp_password=smtp_password,
-        )
+        self.smtp_hostname = check_val(smtp_hostname, "SMTP_HOSTNAME")
+        self.smtp_port = check_val(smtp_port, "SMTP_PORT")
+        self.smtp_username = check_val(smtp_username, "SMTP_USERNAME")
+        self.smtp_password = check_val(smtp_password, "SMTP_PASSWORD")
 
     def create_email(self) -> MIMEMultipart:
         message = MIMEMultipart("alternative")

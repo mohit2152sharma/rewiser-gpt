@@ -4,7 +4,7 @@ import logging
 import markdown
 import inspect
 from datetime import datetime
-from typing import Any, Callable, Tuple
+from typing import Any, Callable
 
 
 def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str:
@@ -80,6 +80,10 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
     return decorate
 
 
+def check_val(val: Any, env_var: str) -> Any:
+    return val if val else read_env_var(env_var)
+
+
 def md_to_html(
     content: str,
     style="material",
@@ -100,19 +104,6 @@ def md_to_html(
         },
     )
     return html
-
-
-@env_var(var="SMTP_HOSTNAME")
-@env_var(var="SMTP_PORT")
-@env_var(var="SMTP_USERNAME")
-@env_var(var="SMTP_PASSWORD")
-def smtp_creds(
-    smtp_hostname: str | None = None,
-    smtp_port: int | None = None,
-    smtp_username: str | None = None,
-    smtp_password: str | None = None,
-) -> Tuple[str, int, str, str]:
-    return smtp_hostname, smtp_port, smtp_username, smtp_password  # type: ignore
 
 
 def file_created_date(file: str):
