@@ -1,4 +1,4 @@
-from utils import md_to_html, read_env_var, smtp_creds
+from rewiser.utils import md_to_html, read_env_var, smtp_creds
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import ssl

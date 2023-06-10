@@ -1,7 +1,7 @@
 import os
 from typing import List
 
-from utils import env_var
+from rewiser.utils import env_var
 
 
 @env_var(var="DOC_DIRECTORY")
