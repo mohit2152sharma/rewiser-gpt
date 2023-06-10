@@ -48,21 +48,28 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
     def decorate(func):
         def wraps(*args, **kwargs):
             # read the parameter space of function
+            if os.getenv("GITHUB_ACTIONS") == "true":
+                func_var = var.replace("INPUT_", "").lower()
+            else:
+                func_var = var.lower()
+
             func_args = inspect.getfullargspec(func).args
-            arg_index = func_args.index(var.lower())
+            arg_index = func_args.index(func_var)
 
             # if parameter is not passed as key word argument
             # check the positional indexes, if args[arg_index]
             # throws an error that means the parameter was also
             # not passed as positional argument, then pass the
             # environment variable
-            if var.lower() not in kwargs:
+
+            if func_var not in kwargs:
                 try:
                     if args[arg_index]:
                         pass
                 except:
                     rs = read_env_var(var=var, default=default, raise_error=raise_error)
-                    kwargs[var.lower()] = rs
+                    kwargs[func_var] = rs
+                    print(f"modified kwargs: {kwargs}")
             result = func(*args, **kwargs)
             return result
 

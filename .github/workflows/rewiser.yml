@@ -9,10 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOC_DIRECTORY: "tests"
-      ACTIONS_STEP_DEBUG: true
-      PYTHONUNBUFFERED: 127
     steps:
-      - name: Test Action
+      - name: Send rewiser email
         uses: mohit2152sharma/rewiser-gpt@main
         with:
           to_email: ${{ secrets.TO_EMAIL }}

@@ -29,9 +29,9 @@ runs:
   using: docker
   image: Dockerfile
   args:
-    - --follow
     - ${{ inputs.to_email }}
     - ${{ inputs.from_email }}
+    - ${{ inputs.doc_directory }}
     - ${{ inputs.smtp_hostname }}
     - ${{ inputs.smtp_port }}
     - ${{ inputs.smtp_username }}
