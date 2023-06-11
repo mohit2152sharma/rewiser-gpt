@@ -1,0 +1,21 @@
+Code structure
+
+The type of templates:
+1. for creating limerick
+2. for creating mcq style question
+3. for generating additional resources: may need internet to surface latest results
+4. for creating visual story explainations
+
+
+So n templates option
+
+1. Create a base template 
+  1. examples for each template
+  2. user input for each template
+  3. system input for each template
+  4. output format for each template 
+
+2. Create enum for rewiser types: limerick, mcq, visual-story, additional
+3. which template to use based on rewiser-type
+4. connection with chat-gpt
+5. parsing output to string, concatenating 
