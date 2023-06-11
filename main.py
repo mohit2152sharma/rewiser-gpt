@@ -9,7 +9,7 @@ from rewiser.email import Emailer
 def main() -> None:
     # read files
     files = sort_files()
-
+    logging.info(f"all files: {files}")
     # select files
     selected_files = pseudo_anki(filenames=files)
     logging.info(f"selected files: {selected_files}")
