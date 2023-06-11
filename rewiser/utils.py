@@ -108,4 +108,6 @@ def md_to_html(
 
 def file_created_date(file: str):
     t = os.path.getctime(file)
-    return datetime.fromtimestamp(t).date()
+    d = datetime.fromtimestamp(t).date()
+    print(f"file created date for file: {file} is {d}")
+    return d
