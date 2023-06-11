@@ -8,7 +8,7 @@ jobs:
     name: send email
     runs-on: ubuntu-latest
     env:
-      DOC_DIRECTORY: "/tests"
+      DOC_DIRECTORY: "."
     steps:
       - name: Send rewiser email
         uses: mohit2152sharma/rewiser-gpt@main
