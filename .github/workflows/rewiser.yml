@@ -10,6 +10,8 @@ jobs:
     env:
       DOC_DIRECTORY: "/tests"
     steps:
+      - name: checkout the repo
+        uses: actions/checkout@v2
       - name: Send rewiser email
         uses: mohit2152sharma/rewiser-gpt@main
         with:
