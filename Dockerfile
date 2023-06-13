@@ -2,7 +2,7 @@ FROM python:3.10-alpine
 
 RUN apk update
 RUN apk add git
-RUN git config --global -add safe.directory "*"
+RUN git config --global --add safe.directory "*"
 RUN pip install -U pip
 COPY . .
 ENV PYTHONUNBUFFERED=1
