@@ -13,7 +13,8 @@ def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str
     Args:
         var: environment variable to read
         default: default value of environment variable if it is not in environment
-        raise_error: if True raises error if the environment variable is not found and default value is `None`
+        raise_error: if True raises error if the environment variable is not found
+        and default value is `None`
 
     Raises:
         ValueError: when environment variable is not found and default value is `None`
@@ -35,12 +36,14 @@ def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str
 
 
 def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable:
-    """A decorator function to read environment variable and pass it on to a function. The decorated function must have a parameter named and lowercased `var`.
+    """A decorator function to read environment variable and pass it on to a function.
+    The decorated function must have a parameter named and lowercased `var`.
 
     Args:
         var: environment variable to read
         default: default value of environment variable if it is not in environment
-        raise_error: if True raises error if the environment variable is not found and default value is `None`
+        raise_error: if True raises error if the environment variable is not found
+        and default value is `None`
 
     Returns:
         Decorated function
@@ -68,7 +71,7 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
                 try:
                     if args[arg_index]:
                         pass
-                except:
+                except KeyError:
                     rs = read_env_var(var=var, default=default, raise_error=raise_error)
                     kwargs[func_var] = rs
                     print(f"modified kwargs: {kwargs}")
