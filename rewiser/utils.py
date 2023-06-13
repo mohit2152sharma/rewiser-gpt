@@ -71,7 +71,7 @@ def env_var(var: str, default: Any = None, raise_error: bool = True) -> Callable
                 try:
                     if args[arg_index]:
                         pass
-                except KeyError:
+                except:
                     rs = read_env_var(var=var, default=default, raise_error=raise_error)
                     kwargs[func_var] = rs
                     print(f"modified kwargs: {kwargs}")
