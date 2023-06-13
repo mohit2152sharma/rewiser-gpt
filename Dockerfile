@@ -1,5 +1,7 @@
 FROM python:3.10-alpine
 
+RUN apk update
+RUN apk add git
 RUN pip install -U pip
 COPY . .
 ENV PYTHONUNBUFFERED=1
