@@ -49,7 +49,8 @@ def sort_files(doc_directory: str | None = None) -> List[str]:
     # fetch the last committed date for each file and then sort by dates
     files = list_files(doc_directory=doc_directory, return_style="filepath")
     subprocess.run(
-        ["git", "config", "--global", "--add", "safe.directory", '"/github/workspace"']
+        ["git", "config", "--global", "--add", "safe.directory", '"/github/workspace"'],
+        text=True,
     )
     rs = sorted(
         files,
