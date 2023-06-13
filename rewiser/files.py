@@ -1,5 +1,7 @@
 import os
+import subprocess
 from typing import List
+from datetime import datetime
 
 from rewiser.utils import env_var
 
@@ -30,10 +32,27 @@ def list_files(
         )
 
 
+def get_commit_date(filepath: str) -> str:
+    cmnd_output = subprocess.run(
+        ["git", "--no-pager", "log", "-1", "--format=%cd", f'"{filepath}"'],
+        text=True,
+        stdout=subprocess.PIPE,
+    )
+    date_str = cmnd_output.stdout.strip()
+    date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
+    return date.strftime("%Y-%m-%d")
+
+
 @env_var(var="DOC_DIRECTORY")
 def sort_files(doc_directory: str | None = None) -> List[str]:
+    # sort the files using git
+    # fetch the last committed date for each file and then sort by dates
     files = list_files(doc_directory=doc_directory, return_style="filepath")
-    rs = sorted(files, key=lambda x: os.path.getctime(x), reverse=True)
+    rs = sorted(
+        files,
+        key=lambda x: datetime.strptime(get_commit_date(x), "%Y-%m-%d"),
+        reverse=True,
+    )
     return rs
 
 
