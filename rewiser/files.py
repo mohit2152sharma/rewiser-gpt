@@ -48,7 +48,7 @@ def sort_files(doc_directory: str | None = None) -> List[str]:
     # sort the files using git
     # fetch the last committed date for each file and then sort by dates
     files = list_files(doc_directory=doc_directory, return_style="filepath")
-    subprocess.run(["git", "config", "--global", "--add", "safe.directory", '"*"'])
+    print(f'all files: {files}')
     rs = sorted(
         files,
         key=lambda x: datetime.strptime(get_commit_date(x), "%Y-%m-%d"),
