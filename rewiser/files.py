@@ -35,8 +35,8 @@ def list_files(
 def get_commit_date(filepath: str) -> str:
     # cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
     cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
-    date_str = subprocess.check_output(cmnd)
-    date_str = date_str.decode("utf-8").strip()
+    # date_str = subprocess.check_output(cmnd)
+    # date_str = date_str.decode("utf-8").strip()
     # cmnd_output = subprocess.run(
     #     ["git", "--no-pager", "log", "-1", "--format=%ad", "--", f'"{filepath}"'],
     #     text=True,
@@ -47,6 +47,14 @@ def get_commit_date(filepath: str) -> str:
     # if cmnd_output.stderr:
     #     print(cmnd_output.stderr.strip())
     # date_str = cmnd_output.stdout.strip()
+
+    # trying with popen
+    process = subprocess.Popen(
+        cmnd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    out, err = process.communicate()
+    print(out, err)
+    date_str = out.strip()
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
     return date.strftime("%Y-%m-%d")
 
