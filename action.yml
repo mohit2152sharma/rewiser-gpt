@@ -28,18 +28,16 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: setup environment variables
+    - name: Send Rewiser mail
       run: |
-        export INPUT_TO_EMAIL=${{ inputs.to_emaill }}
+        echo "exporting environment variables"
+        export INPUT_TO_EMAIL=${{ inputs.to_email }}
         export INPUT_FROM_EMAIL=${{ inputs.from_email }}
-        export INPUT_DOC_DIRECTORY=${{inputs.doc_directory }}
+        export INPUT_DOC_DIRECTORY=${{ inputs.doc_directory }}
         export INPUT_SMTP_HOSTNAME=${{ inputs.smtp_hostname }}
         export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
         export INPUT_SMTP_USERNAME=${{ inputs.smtp_username }}
         export INPUT_SMTP_PASSWORD=${{ inputs.smtp_password }}
-      shell: bash
-    - name: Send Rewiser mail
-      run: |
         echo "installing python dependencies"
         pip install -r requirements.txt
         python main.py
