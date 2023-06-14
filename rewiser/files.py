@@ -33,11 +33,11 @@ def list_files(
 
 
 def get_commit_date(filepath: str) -> str:
-    # cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
-    cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
-    date_str = subprocess.check_output(cmnd)
-    print(date_str)
-    date_str = date_str.decode("utf-8").strip()
+    cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
+    # cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
+    # date_str = subprocess.check_output(cmnd)
+    # print(date_str)
+    # date_str = date_str.decode("utf-8").strip()
     # cmnd_output = subprocess.run(
     #     ["git", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
     #     text=True,
@@ -51,14 +51,15 @@ def get_commit_date(filepath: str) -> str:
     # date_str = cmnd_output.stdout.strip()
 
     # trying with popen
-    # process = subprocess.Popen(
-    #     cmnd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    # )
-    # out, err = process.communicate()
-    # print(f"output: {out}")
-    # print(f"error: {err}")
-    # date_str = out.strip()
     print(filepath)
+    print(cmnd)
+    process = subprocess.Popen(
+        cmnd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+    )
+    out, err = process.communicate()
+    print(f"output: {out}")
+    print(f"error: {err}")
+    date_str = out.strip()
     # x = os.system(f'git --no-pager log -1 --format=%cd -- "{filepath}"')
     # print(x)
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
