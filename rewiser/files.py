@@ -1,9 +1,8 @@
 import os
 from typing import List
 from datetime import datetime
-import subprocess
 
-from rewiser.utils import env_var
+from rewiser.utils import env_var, file_commit_date
 
 
 @env_var(var="DOC_DIRECTORY")
@@ -32,43 +31,6 @@ def list_files(
         )
 
 
-def get_commit_date(filepath: str) -> str:
-    cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
-    # cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
-    # date_str = subprocess.check_output(cmnd)
-    # print(date_str)
-    # date_str = date_str.decode("utf-8").strip()
-    cmnd_output = subprocess.run(cmnd, capture_output=True, shell=True)
-
-    # cmnd_output = subprocess.run(
-    #     ["git", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
-    #     text=True,
-    #     stdout=subprocess.PIPE,
-    #     stderr=subprocess.PIPE,
-    #     shell=True,
-    # )
-    # print(cmnd_output)
-    # if cmnd_output.stderr:
-    #     print(cmnd_output.stderr.strip())
-    date_str = cmnd_output.stdout.strip()
-    print(cmnd_output)
-    print(date_str)
-    # trying with popen
-    print(filepath)
-    print(cmnd)
-    # process = subprocess.Popen(
-    #     cmnd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-    # )
-    # out, err = process.communicate()
-    # print(f"output: {out}")
-    # print(f"error: {err}")
-    # date_str = out.strip()
-    # x = os.system(f'git --no-pager log -1 --format=%cd -- "{filepath}"')
-    # print(x)
-    date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
-    return date.strftime("%Y-%m-%d")
-
-
 @env_var(var="DOC_DIRECTORY")
 def sort_files(doc_directory: str | None = None) -> List[str]:
     # sort the files using git
@@ -77,7 +39,7 @@ def sort_files(doc_directory: str | None = None) -> List[str]:
     print(f"all files: {files}")
     rs = sorted(
         files,
-        key=lambda x: datetime.strptime(get_commit_date(x), "%Y-%m-%d"),
+        key=lambda x: datetime.strptime(file_commit_date(x), "%Y-%m-%d"),
         reverse=True,
     )
     return rs
