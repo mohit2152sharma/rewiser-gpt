@@ -12,10 +12,8 @@ jobs:
     steps:
       - name: checkout the repo
         uses: actions/checkout@v3
-      - name: Set ownership
-        run: |
-          # this is to fix GIT not liking owner of the checkout dir
-          chown -R $(id -u):$(id -g) $PWD
+      - name: Fix git safe.directory in container
+        run: mkdir -p /home/runner/work/_temp/_github_home && printf "[safe]\n\tdirectory = /github/workspace" > /home/runner/work/_temp/_github_home/.gitconfig
       - name: Send rewiser email
         uses: mohit2152sharma/rewiser-gpt@main
         with:
