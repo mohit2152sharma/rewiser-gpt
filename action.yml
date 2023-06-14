@@ -37,6 +37,7 @@ runs:
         export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
         export INPUT_SMTP_USERNAME=${{ inputs.smtp_username }}
         export INPUT_SMTP_PASSWORD=${{ inputs.smtp_password }}
+      shell: bash
     - name: Send Rewiser mail
       run: |
         echo "installing python dependencies"
