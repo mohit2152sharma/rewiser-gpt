@@ -26,21 +26,31 @@ inputs:
     required: true
 
 runs:
-  using: "composite"
-  steps:
-    - name: Send Rewiser mail
-      run: |
-        echo "exporting environment variables"
-        export INPUT_TO_EMAIL=${{ inputs.to_email }}
-        export INPUT_FROM_EMAIL=${{ inputs.from_email }}
-        export INPUT_DOC_DIRECTORY=${{ inputs.doc_directory }}
-        export INPUT_SMTP_HOSTNAME=${{ inputs.smtp_hostname }}
-        export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
-        export INPUT_SMTP_USERNAME=${{ inputs.smtp_username }}
-        export INPUT_SMTP_PASSWORD=${{ inputs.smtp_password }}
-        echo "installing python dependencies"
-        pip install -r requirements.txt
-        python main.py
-      shell: bash
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.to_email }}
+    - ${{ inputs.from_email }}
+    - ${{ inputs.doc_directory }}
+    - ${{ inputs.smtp_hostname }}
+    - ${{ inputs.smtp_port }}
+    - ${{ inputs.smtp_username }}
+    - ${{ inputs.smtp_password }}
+  # using: "composite"
+  # steps:
+    # - name: Send Rewiser mail
+    #   run: |
+    #     echo "exporting environment variables"
+    #     export INPUT_TO_EMAIL=${{ inputs.to_email }}
+    #     export INPUT_FROM_EMAIL=${{ inputs.from_email }}
+    #     export INPUT_DOC_DIRECTORY=${{ inputs.doc_directory }}
+    #     export INPUT_SMTP_HOSTNAME=${{ inputs.smtp_hostname }}
+    #     export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
+    #     export INPUT_SMTP_USERNAME=${{ inputs.smtp_username }}
+    #     export INPUT_SMTP_PASSWORD=${{ inputs.smtp_password }}
+    #     echo "installing python dependencies"
+    #     pip install -r requirements.txt
+    #     python main.py
+    #   shell: bash
     
     
