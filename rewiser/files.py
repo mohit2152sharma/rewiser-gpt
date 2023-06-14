@@ -37,7 +37,10 @@ def get_commit_date(filepath: str) -> str:
         ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
         text=True,
         stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
     )
+    if cmnd_output.stderr:
+        print(cmnd_output.stderr.strip())
     date_str = cmnd_output.stdout.strip()
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
     return date.strftime("%Y-%m-%d")
