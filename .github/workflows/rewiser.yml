@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: checkout the repo
         uses: actions/checkout@v3
-      - run: git --no-pager log -1 --format=%ad tests/test_main.py
+      - run: git --no-pager log -1 --format=%ad files/anki.py
       # - name: Send rewiser email
       #   uses: mohit2152sharma/rewiser-gpt@main
       #   with:
