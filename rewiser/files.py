@@ -56,6 +56,7 @@ def get_commit_date(filepath: str) -> str:
     # print(f"output: {out}")
     # print(f"error: {err}")
     # date_str = out.strip()
+    print(filepath)
     x = os.system(f'git --no-pager log -1 --format=%cd -- "{filepath}"')
     print(x)
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
