@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: checkout the repo
         uses: actions/checkout@v3
+      - name: git check
+        uses: git --no-pager log -1 --format=%ad tests/test_main.py
       - name: Send rewiser email
         uses: mohit2152sharma/rewiser-gpt@main
         with:
