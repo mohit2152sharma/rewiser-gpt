@@ -12,13 +12,14 @@ jobs:
     steps:
       - name: checkout the repo
         uses: actions/checkout@v3
-      - name: Send rewiser email
-        uses: mohit2152sharma/rewiser-gpt@main
-        with:
-          to_email: ${{ secrets.TO_EMAIL }}
-          from_email: ${{ secrets.FROM_EMAIL }}
-          doc_directory: ${{ env.DOC_DIRECTORY }}
-          smtp_hostname: ${{ secrets.SMTP_HOSTNAME }}
-          smtp_port: ${{ secrets.SMTP_PORT }}
-          smtp_username: ${{ secrets.SMTP_USERNAME }}
-          smtp_password: ${{ secrets.SMTP_PASSWORD }}
+      - run: git --no-pager log -1 --format=%ad tests/test_main.py
+      # - name: Send rewiser email
+      #   uses: mohit2152sharma/rewiser-gpt@main
+      #   with:
+      #     to_email: ${{ secrets.TO_EMAIL }}
+      #     from_email: ${{ secrets.FROM_EMAIL }}
+      #     doc_directory: ${{ env.DOC_DIRECTORY }}
+      #     smtp_hostname: ${{ secrets.SMTP_HOSTNAME }}
+      #     smtp_port: ${{ secrets.SMTP_PORT }}
+      #     smtp_username: ${{ secrets.SMTP_USERNAME }}
+      #     smtp_password: ${{ secrets.SMTP_PASSWORD }}
