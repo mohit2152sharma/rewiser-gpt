@@ -22,6 +22,8 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
 
     current_date = datetime.utcnow().date()
     first_file = filenames[-1]
+
+    # TODO: change to file committed date
     min_date = file_created_date(first_file)
 
     dates_to_send = []
