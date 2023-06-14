@@ -38,7 +38,7 @@ def get_commit_date(filepath: str) -> str:
     # date_str = subprocess.check_output(cmnd)
     # date_str = date_str.decode("utf-8").strip()
     cmnd_output = subprocess.run(
-        ["git", "--no-pager", "log", "-1", "--format=%ad", "--", f'"{filepath}"'],
+        ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
