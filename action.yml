@@ -32,5 +32,6 @@ runs:
       run: |
         echo "starting the github action"
         python main.py
+      shell: bash
     
     
