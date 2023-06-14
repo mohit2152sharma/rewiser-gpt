@@ -24,7 +24,7 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
     first_file = filenames[-1]
 
     min_date = file_commit_date(first_file)
-    min_date = datetime.strptime(min_date, "%Y-%m-%d")
+    min_date = datetime.strptime(min_date, "%Y-%m-%d").date()
 
     dates_to_send = []
     date_variable = current_date
