@@ -34,7 +34,7 @@ def list_files(
 
 def get_commit_date(filepath: str) -> str:
     cmnd_output = subprocess.run(
-        ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
+        ["git", "--no-pager", "log", "-1", "--format=%ad", "--", f'"{filepath}"'],
         text=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
