@@ -1,6 +1,7 @@
 import os
 from typing import List
 from datetime import datetime
+import subprocess
 
 from rewiser.utils import env_var
 
@@ -35,6 +36,7 @@ def get_commit_date(filepath: str) -> str:
     # cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
     cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
     date_str = subprocess.check_output(cmnd)
+    print(date_str)
     date_str = date_str.decode("utf-8").strip()
     # cmnd_output = subprocess.run(
     #     ["git", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
