@@ -33,16 +33,19 @@ def list_files(
 
 
 def get_commit_date(filepath: str) -> str:
-    cmnd_output = subprocess.run(
-        ["git", "--no-pager", "log", "-1", "--format=%ad", "--", f'"{filepath}"'],
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE
-    )
-    print(cmnd_output)
-    if cmnd_output.stderr:
-        print(cmnd_output.stderr.strip())
-    date_str = cmnd_output.stdout.strip()
+    cmnd = f'git --no-pager log -1 --format=%cd "{filepath}"'
+    date_str = subprocess.check_output(cmnd)
+    date_str = date_str.decode("utf-8").strip()
+    # cmnd_output = subprocess.run(
+    #     ["git", "--no-pager", "log", "-1", "--format=%ad", "--", f'"{filepath}"'],
+    #     text=True,
+    #     stdout=subprocess.PIPE,
+    #     stderr=subprocess.PIPE
+    # )
+    # print(cmnd_output)
+    # if cmnd_output.stderr:
+    #     print(cmnd_output.stderr.strip())
+    # date_str = cmnd_output.stdout.strip()
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
     return date.strftime("%Y-%m-%d")
 
@@ -52,7 +55,7 @@ def sort_files(doc_directory: str | None = None) -> List[str]:
     # sort the files using git
     # fetch the last committed date for each file and then sort by dates
     files = list_files(doc_directory=doc_directory, return_style="filepath")
-    print(f'all files: {files}')
+    print(f"all files: {files}")
     rs = sorted(
         files,
         key=lambda x: datetime.strptime(get_commit_date(x), "%Y-%m-%d"),
