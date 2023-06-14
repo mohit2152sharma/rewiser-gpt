@@ -1,5 +1,4 @@
 import os
-import subprocess
 from typing import List
 from datetime import datetime
 
@@ -37,17 +36,17 @@ def get_commit_date(filepath: str) -> str:
     # cmnd = ["git", "--no-pager", "log", "-1", "--format=%cd", "--", f'"{filepath}"']
     # date_str = subprocess.check_output(cmnd)
     # date_str = date_str.decode("utf-8").strip()
-    cmnd_output = subprocess.run(
-        ["git", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        shell=True,
-    )
-    print(cmnd_output)
-    if cmnd_output.stderr:
-        print(cmnd_output.stderr.strip())
-    date_str = cmnd_output.stdout.strip()
+    # cmnd_output = subprocess.run(
+    #     ["git", "log", "-1", "--format=%cd", "--", f'"{filepath}"'],
+    #     text=True,
+    #     stdout=subprocess.PIPE,
+    #     stderr=subprocess.PIPE,
+    #     shell=True,
+    # )
+    # print(cmnd_output)
+    # if cmnd_output.stderr:
+    #     print(cmnd_output.stderr.strip())
+    # date_str = cmnd_output.stdout.strip()
 
     # trying with popen
     # process = subprocess.Popen(
@@ -57,6 +56,8 @@ def get_commit_date(filepath: str) -> str:
     # print(f"output: {out}")
     # print(f"error: {err}")
     # date_str = out.strip()
+    x = os.system(f'git --no-pager log -1 --format=%cd -- "{filepath}"')
+    print(x)
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
     return date.strftime("%Y-%m-%d")
 
