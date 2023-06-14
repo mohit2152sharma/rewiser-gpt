@@ -30,7 +30,8 @@ runs:
   steps:
     - name: Send Rewiser mail
       run: |
-        echo "starting the github action"
+        echo "installing python dependencies"
+        pip install -r requirements.txt
         python main.py
       shell: bash
     
