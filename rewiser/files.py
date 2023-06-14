@@ -39,6 +39,7 @@ def get_commit_date(filepath: str) -> str:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
     )
+    print(cmnd_output)
     if cmnd_output.stderr:
         print(cmnd_output.stderr.strip())
     date_str = cmnd_output.stdout.strip()
