@@ -28,11 +28,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: test git commands
-      run: |
-        echo "testing git commands"
-        for i in ${{ inputs.doc_directory }}/*; do git --no-pager log -1 --format=%cd $i; done
-      shell: bash
     - name: Send Rewiser mail
       run: |
         echo "exporting environment variables"
