@@ -53,7 +53,8 @@ def get_commit_date(filepath: str) -> str:
         cmnd, shell=True, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
     )
     out, err = process.communicate()
-    print(out, err)
+    print(f"output: {out}")
+    print(f"error: {err}")
     date_str = out.strip()
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
     return date.strftime("%Y-%m-%d")
