@@ -8,7 +8,7 @@ jobs:
     name: send email
     runs-on: ubuntu-latest
     env:
-      DOC_DIRECTORY: "/tests"
+      DOC_DIRECTORY: "tests"
     steps:
       - name: checkout the repo
         uses: actions/checkout@v3
