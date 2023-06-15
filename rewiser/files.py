@@ -59,7 +59,7 @@ def read_file(filepath: str) -> str:
 
 
 def extract_filename(filepath: str) -> str:
-    return os.path.splitext(os.path.split(filepath)[-1])[1]
+    return os.path.splitext(os.path.split(filepath)[-1])[0]
 
 
 def concat_files(filepaths: List[str]) -> str:
@@ -70,6 +70,3 @@ def concat_files(filepaths: List[str]) -> str:
         result += f"# {heading}\n{content}\n\n"
 
     return result
-
-
-# print(sort_files(files=relative_file_path(list_files("tests"), "tests")))
