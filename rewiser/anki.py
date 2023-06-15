@@ -1,5 +1,5 @@
 from typing import List
-
+import logging
 from rewiser.utils import file_commit_date
 from datetime import datetime, timedelta
 
@@ -31,8 +31,8 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
     i = 0
     while current_date - timedelta(2**i) > min_date:
         date_variable = current_date - timedelta(2**i)
-        dates_to_send.append(date_variable)
+        dates_to_send.append(date_variable.strftime("%Y-%m-%d"))
         i += 1
-
     result = [f for f in filenames if file_commit_date(f) in dates_to_send]
+    logging.info(f"files selected: {result}")
     return result

@@ -1,4 +1,5 @@
 import os
+import logging
 from typing import List
 from datetime import datetime
 
@@ -22,12 +23,16 @@ def list_files(
         List of file names
     """
     if return_style == "filepath":
-        return [os.path.join(doc_directory, f) for f in os.listdir(doc_directory)]  # type: ignore
+        return [
+            os.path.join(doc_directory, f)
+            for f in os.listdir(doc_directory)
+            if not os.path.isdir(f)
+        ]  # type: ignore
     elif return_style == "filename":
-        return list(os.listdir(doc_directory))
+        return [f for f in os.listdir(doc_directory) if not os.path.isdir(f)]
     else:
         raise ValueError(
-            f"The return style: {return_style} provided is invalid. Valid values are `filepath` and `filename`"
+            f"The return style: {return_style} provided is invalid. Valid values are `filepath` and `filename`"  # noqa
         )
 
 
@@ -42,6 +47,7 @@ def sort_files(doc_directory: str | None = None) -> List[str]:
         key=lambda x: datetime.strptime(file_commit_date(x), "%Y-%m-%d"),
         reverse=True,
     )
+    logging.info(f"sorted files list: {rs}")
     return rs
 
 

@@ -115,7 +115,9 @@ def file_commit_date(filepath: str) -> str:
     cmnd_output = subprocess.run(cmnd, capture_output=True, shell=True)
     date_str = cmnd_output.stdout.decode("utf-8").strip()
     date = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
-    return date.strftime("%Y-%m-%d")
+    d = date.strftime("%Y-%m-%d")
+    logging.info(f"commit date for file: {filepath} is: {d}")
+    return d
 
 
 def file_created_date(file: str):
