@@ -26,16 +26,6 @@ inputs:
     required: true
 
 runs:
-  # using: docker
-  # image: Dockerfile
-  # args:
-  #   - ${{ inputs.to_email }}
-  #   - ${{ inputs.from_email }}
-  #   - ${{ inputs.doc_directory }}
-  #   - ${{ inputs.smtp_hostname }}
-  #   - ${{ inputs.smtp_port }}
-  #   - ${{ inputs.smtp_username }}
-  #   - ${{ inputs.smtp_password }}
   using: "composite"
   steps:
     - name: Send Rewiser mail
