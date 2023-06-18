@@ -43,3 +43,7 @@ runs:
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
         python ${GITHUB_ACTION_PATH}/main.py
       shell: bash
+
+branding:
+  icon: 'book-open'
+  color: 'blue'
