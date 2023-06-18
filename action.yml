@@ -2,6 +2,7 @@
 # it has to be named exactly `action.yml`
 name: "rewiser-gpt"
 description: "send rewiser email"
+author: "Mohit Sharma <mohitlakshya@gmail.com"
 inputs:
   to_email:
     description: "The email Id to sent to"
