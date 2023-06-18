@@ -2,16 +2,58 @@
 
 A github action to manage your daily devlogs and help you revise them regularly.
 
+
 ## How it works?
 
+Like a regular github action.
 1. Hook this github-action to your devlog repository
 2. Mention the directory and file type where all the devlogs are stored
 3. The action will figure out the order of the files and will use anki style algorithm to create your daily roster.
 4. It will send the daily roster via email, for emails to work, it will require smtp hostname and credentials.
-5. Each roster is powered by ai (for the following to work openAI key will be required and each of the following will be provided as parameter):
-    1. To ease up memorization, the roster will be summarized by some memory technique like a limerick or a story or a visualisation.
-    2. At the end of each roster, there will be a quiz and link for additional resources to learn.
 
+You need to add a `yml` file in your `.github/workflows` folder to setup this action.
+
+Here's a complete example of how to set it up, you can add a similar example to your `.github/workflows` folder:
+
+```yml
+
+# name of your action/workflow
+name: Send Devlogs Rewiser Email
+on:
+  
+  # the schedule at which to send the email
+  schedule:
+    - cron: '30 01 * * *'
+  workflow_dispatch:
+jobs:
+  send_email:
+    name: send email
+    runs-on: ubuntu-latest
+    steps:
+        # this checksout the github repository
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+        # this sends the daily email
+      - name: Send devlog Email
+        uses: mohit2152sharma/rewiser-gpt@main
+        with:
+
+          # all the following are required parameters
+          to_email: "mohitlakshya@gmail.com"
+          from_email: "mohitsharma@saral.club"
+          doc_directory: "devlogs"
+          smtp_hostname: ${{ secrets.SMTP_ENDPOINT }}
+          smtp_port: ${{ secrets.SMTP_PORT }}
+          smtp_username: ${{ secrets.SMTP_USERNAME }}
+          smtp_password: ${{ secrets.SMTP_PASSWORD }}
+```
+
+
+## Something Planned for future
+
+I am exploring the idea of using openAI's Chatgpt to ease out the process of memorization, by using memorization technique like follows. This feature is not yet implemented and the work is in progress. Some examples, I thought of how Chatgpt can be used:
 
 For example, if following is the text for roster: 
 ```
