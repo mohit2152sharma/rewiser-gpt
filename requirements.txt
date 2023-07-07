@@ -1,1 +1,4 @@
 markdown==3.4.3
+openai==0.27.8
+langchain==0.0.196
+langchainplus-sdk==0.0.8
