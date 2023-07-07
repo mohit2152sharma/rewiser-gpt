@@ -53,3 +53,4 @@ jobs:
 
 If you provide an `OPENAI_API_KEY`, it will generate questions for texts available in the files. At the moment, each item of a numbered list is treated as a separate text and questions are generated for each of these texts. The output in email, looks as shown below:
 
+![](./assets/email_screenshot.png)
