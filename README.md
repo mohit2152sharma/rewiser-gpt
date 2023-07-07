@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0
         # this sends the daily email
       - name: Send devlog Email
-        uses: mohit2152sharma/rewiser-gpt@v0.0.4
+        uses: mohit2152sharma/rewiser-gpt@v0.0.3
         with:
 
           # all the following are required parameters
