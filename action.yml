@@ -25,6 +25,9 @@ inputs:
   smtp_password:
     description: "SMTP server password, used for logging in"
     required: true
+  openai_api_key:
+    description: "OpenAI API Key for generating questions"
+    required: false
 
 runs:
   using: "composite"
@@ -39,6 +42,7 @@ runs:
         export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
         export INPUT_SMTP_USERNAME=${{ inputs.smtp_username }}
         export INPUT_SMTP_PASSWORD=${{ inputs.smtp_password }}
+        export INPUT_OPENAI_API_KEY=${{ inputs.openai_api_key }}
         echo "installing python dependencies"
         pip install -r ${GITHUB_ACTION_PATH}/requirements.txt
         python ${GITHUB_ACTION_PATH}/main.py

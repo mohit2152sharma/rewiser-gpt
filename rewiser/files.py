@@ -5,7 +5,7 @@ from datetime import datetime
 from rewiser.gpt.agent import OpenAIAgent
 from rewiser.gpt.utils import split_numbered_lines
 
-from rewiser.utils import env_var, file_commit_date
+from rewiser.utils import env_var, file_commit_date, read_env_var
 
 
 @env_var(var="DOC_DIRECTORY")
@@ -74,17 +74,23 @@ def concat_files(filepaths: List[str]) -> str:
         splits.extend(split_numbered_lines(text=content))
 
     # for each split generate a question
-    agent = OpenAIAgent(template_name="question_generator")
-    questions = ""
-    logging.info(f"Generating questions. Total questions to generate: {len(splits)}")
-    counter = 1
-    for split in splits:
-        question = agent.run(input_text=split)
-        if question:
-            questions += f"{counter}. {question}\n"
-            counter += 1
+    openai_api_key = read_env_var("OPENAI_API_KEY", raise_error=False)
+    if openai_api_key:
+        agent = OpenAIAgent(template_name="question_generator")
+        questions = ""
+        logging.info(
+            f"Generating questions. Total questions to generate: {len(splits)}"
+        )
+        counter = 1
+        for split in splits:
+            question = agent.run(input_text=split)
+            if question:
+                questions += f"{counter}. {question}\n"
+                counter += 1
 
-    logging.info("total questions generated")
-    result += f"# Questions\n\n{questions}"
+        logging.info("total questions generated")
+        result += f"# Questions\n\n{questions}"
+    else:
+        logging.info("openai_api_key is not provided skipping generating questions")
 
     return result
