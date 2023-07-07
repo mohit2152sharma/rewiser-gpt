@@ -2,6 +2,8 @@ import os
 import logging
 from typing import List
 from datetime import datetime
+from rewiser.gpt.agent import OpenAIAgent
+from rewiser.gpt.utils import split_numbered_lines
 
 from rewiser.utils import env_var, file_commit_date
 
@@ -64,9 +66,25 @@ def extract_filename(filepath: str) -> str:
 
 def concat_files(filepaths: List[str]) -> str:
     result = ""
+    splits = []
     for file in filepaths:
         content = read_file(file)
         heading = extract_filename(file).capitalize()
         result += f"# {heading}\n{content}\n\n"
+        splits.extend(split_numbered_lines(text=content))
+
+    # for each split generate a question
+    agent = OpenAIAgent(template_name="question_generator")
+    questions = ""
+    logging.info(f"Generating questions. Total questions to generate: {len(splits)}")
+    counter = 1
+    for split in splits:
+        question = agent.run(input_text=split)
+        if question:
+            questions += f"{counter}. {question}\n"
+            counter += 1
+
+    logging.info("total questions generated")
+    result += f"# Questions\n\n{questions}"
 
     return result
