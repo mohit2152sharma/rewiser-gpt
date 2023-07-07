@@ -37,4 +37,5 @@ class OpenAIAgent:
 
         logging.info("question generated")
 
+        resp = resp.strip()
         return resp

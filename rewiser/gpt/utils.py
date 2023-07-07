@@ -18,7 +18,7 @@ def split_numbered_lines(text: str) -> List[str]:
     Returns:
         List of strings where each element corresponds to the line item
     """
-    pattern = "^\d+. |\n +\d+."
+    pattern = "^\d+.|\n\d+."
     splits = re.split(pattern=pattern, string=text)
     result = [x.strip() for x in splits if x]
     return result
