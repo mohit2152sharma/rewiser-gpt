@@ -1,8 +1,11 @@
+import os
 from typing import List, Dict
 import re
 import json
 
 from langchain import PromptTemplate
+
+from rewiser.utils import module_dir
 
 
 def split_numbered_lines(text: str) -> List[str]:
@@ -21,7 +24,9 @@ def split_numbered_lines(text: str) -> List[str]:
     return result
 
 
-def read_templates(file_path: str = "./rewiser/gpt/templates.json") -> Dict[str, str]:
+def read_templates() -> Dict[str, str]:
+    dir = module_dir()
+    file_path = os.path.join(dir, "gpt", "templates.json")
     with open(file_path, "r") as file:
         configs = json.load(file)
     return configs

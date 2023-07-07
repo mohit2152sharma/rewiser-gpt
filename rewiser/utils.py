@@ -6,6 +6,7 @@ import markdown
 import inspect
 from datetime import datetime
 from typing import Any, Callable
+from pathlib import Path
 
 
 def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str:
@@ -125,3 +126,8 @@ def file_created_date(file: str):
     d = datetime.fromtimestamp(t).date()
     print(f"file created date for file: {file} is {d}")
     return d
+
+
+def module_dir() -> str:
+    p = Path(__file__).parent.resolve()
+    return str(p)
