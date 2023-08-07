@@ -1,9 +1,10 @@
 #!/usr/local/bin/python
 
-from rewiser.files import concat_files, sort_files
 import logging
+
 from rewiser.anki import pseudo_anki
 from rewiser.email import Emailer
+from rewiser.files import concat_files, sort_files
 
 
 def main() -> None:
@@ -16,9 +17,12 @@ def main() -> None:
     content = concat_files(filepaths=selected_files)
 
     # send email
-    emailer = Emailer(body=content)
-    emailer.send_email()
-    logging.info(f"Email send successfully to: {emailer.to} from: {emailer.frm}")
+    if content:
+        emailer = Emailer(body=content)
+        emailer.send_email()
+        logging.info(f"Email send successfully to: {emailer.to} from: {emailer.frm}")
+    else:
+        logging.info("Content is empty, no email to send")
 
 
 if __name__ == "__main__":
