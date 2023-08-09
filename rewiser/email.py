@@ -11,7 +11,7 @@ class Emailer:
         body: str,
         to: str | None = None,
         frm: str | None = None,
-        subject: str = "Rewiser Email",
+        subject: str | None = None,
         smtp_hostname: str | None = None,
         smtp_port: int | None = None,
         smtp_username: str | None = None,
@@ -20,7 +20,7 @@ class Emailer:
         self.body = body
         self.to = check_val(to, "TO_EMAIL")
         self.frm = check_val(frm, "FROM_EMAIL")
-        self.subject = subject
+        self.subject = check_val(subject, "SUBJECT") or "Rewiser Email"
         self.smtp_hostname = check_val(smtp_hostname, "SMTP_HOSTNAME")
         self.smtp_port = check_val(smtp_port, "SMTP_PORT")
         self.smtp_username = check_val(smtp_username, "SMTP_USERNAME")
