@@ -42,7 +42,6 @@ runs:
         export INPUT_TO_EMAIL=${{ inputs.to_email }}
         export INPUT_FROM_EMAIL=${{ inputs.from_email }}
         export INPUT_SUBJECT="${{ inputs.subject }}"
-        echo $INPUT_SUBJECT
         export INPUT_DOC_DIRECTORY=${{ inputs.doc_directory }}
         export INPUT_SMTP_HOSTNAME=${{ inputs.smtp_hostname }}
         export INPUT_SMTP_PORT=${{ inputs.smtp_port }}
