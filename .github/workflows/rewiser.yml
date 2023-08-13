@@ -23,4 +23,4 @@ jobs:
           smtp_port: ${{ secrets.SMTP_PORT }}
           smtp_username: ${{ secrets.SMTP_USERNAME }}
           smtp_password: ${{ secrets.SMTP_PASSWORD }}
-          subject: ${{ inputs.SUBJECT }}
+          subject: "Rewiser-gpt Repo Email"
