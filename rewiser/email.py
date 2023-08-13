@@ -1,8 +1,9 @@
-from rewiser.utils import md_to_html, check_val
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import ssl
 import smtplib
+import ssl
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+from rewiser.utils import check_val, md_to_html
 
 
 class Emailer:
@@ -11,7 +12,7 @@ class Emailer:
         body: str,
         to: str | None = None,
         frm: str | None = None,
-        subject: str | None = None,
+        subject: str = "Rewiser Email",
         smtp_hostname: str | None = None,
         smtp_port: int | None = None,
         smtp_username: str | None = None,

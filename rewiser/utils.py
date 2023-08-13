@@ -1,12 +1,13 @@
-from functools import wraps
+import inspect
+import logging
 import os
 import subprocess
-import logging
-import markdown
-import inspect
 from datetime import datetime
-from typing import Any, Callable
+from functools import wraps
 from pathlib import Path
+from typing import Any, Callable
+
+import markdown
 
 
 def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str:
@@ -29,6 +30,7 @@ def read_env_var(var: str, default: Any = None, raise_error: bool = True) -> str
         var = f"INPUT_{var}"
         logging.info("Code is running in github action pipeline, appending INPUT_")
 
+    logging.info(f"Environment variable to read: {var}")
     result = os.getenv(var, default)
     if result is None and raise_error:
         raise ValueError(
