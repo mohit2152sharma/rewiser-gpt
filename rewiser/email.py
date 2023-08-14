@@ -12,7 +12,7 @@ class Emailer:
         body: str,
         to: str | None = None,
         frm: str | None = None,
-        subject: str = "Rewiser Email",
+        subject: str | None = None,
         smtp_hostname: str | None = None,
         smtp_port: int | None = None,
         smtp_username: str | None = None,
