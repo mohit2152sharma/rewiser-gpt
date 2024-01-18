@@ -1,7 +1,8 @@
-from typing import List
 import logging
-from rewiser.utils import file_commit_date
 from datetime import datetime, timedelta
+from typing import List
+
+from rewiser.utils import file_commit_date
 
 
 def pseudo_anki(filenames: List[str]) -> List[str]:
@@ -29,8 +30,8 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
     dates_to_send = []
     date_variable = current_date
     i = 0
-    while current_date - timedelta(2**i) > min_date:
-        date_variable = current_date - timedelta(2**i)
+    while current_date - timedelta(2 * i) > min_date:
+        date_variable = current_date - timedelta(2 * i)
         dates_to_send.append(date_variable.strftime("%Y-%m-%d"))
         i += 1
     result = [f for f in filenames if file_commit_date(f) in dates_to_send]
