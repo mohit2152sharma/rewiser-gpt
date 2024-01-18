@@ -7,6 +7,14 @@ from rewiser.utils import file_commit_date
 EF = 2.5
 
 
+def fib_seq(n) -> list[int]:
+    fib = [0, 1]
+    # create a fibonacci sequence
+    for i in range(2, n):
+        fib.append(fib[i - 1] + fib[i - 2])
+    return fib
+
+
 def pseudo_anki(filenames: List[str]) -> List[str]:
     """Given a the sorted list of files, decides which one to include to send.
 
@@ -47,7 +55,7 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
         revision_date = d + timedelta(days=1)
         delta = 1
         revision_dates = [revision_date.strftime("%Y-%m-%d")]
-        while revision_date < current_date:
+        while revision_date <= current_date:
             new_date = revision_date + timedelta(days=delta * EF)
             revision_dates.append(new_date.strftime("%Y-%m-%d"))
             delta = (new_date - revision_date).days
