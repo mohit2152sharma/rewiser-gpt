@@ -32,21 +32,6 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
     # select files matching the date s
 
     current_date = datetime.utcnow().date()
-    # first_file = filenames[-1]
-    #
-    # min_date = file_commit_date(first_file)
-    # min_date = datetime.strptime(min_date, "%Y-%m-%d").date()
-    #
-    # dates_to_send = []
-    # date_variable = current_date
-    # i = 0
-    # while current_date - timedelta(2 * i) > min_date:
-    #     date_variable = current_date - timedelta(2 * i)
-    #     dates_to_send.append(date_variable.strftime("%Y-%m-%d"))
-    #     i += 1
-    # result = [f for f in filenames if file_commit_date(f) in dates_to_send]
-    # logging.info(f"files selected: {result}")
-    # return result
 
     result = []
     for file in filenames:
@@ -56,33 +41,11 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
         delta = 1
         revision_dates = [revision_date.strftime("%Y-%m-%d")]
         while revision_date <= current_date:
-            new_date = revision_date + timedelta(days=2**delta)
+            new_date = revision_date + timedelta(days=delta * EF)
             revision_dates.append(new_date.strftime("%Y-%m-%d"))
-            # delta = (new_date - revision_date).days
-            delta += 1
+            delta = (new_date - revision_date).days
             revision_date = new_date
         if current_date.strftime("%Y-%m-%d") in revision_dates:
             result.append(file)
     logging.info(f"files selected: {result}")
     return result
-
-
-# def find_revision_date(init_date):
-#     d = datetime.strptime(init_date, "%Y-%m-%d").date()
-#     current_date = datetime.now().date()
-#     revision_date = d + timedelta(days=1)
-#     delta = 1
-#
-#     revision_dates = [revision_date.strftime("%Y-%m-%d")]
-#     i = 1
-#     while revision_date <= current_date:
-#         new_date = revision_date + timedelta(days=2**i)
-#         revision_dates.append(new_date.strftime("%Y-%m-%d"))
-#         # delta = (new_date - revision_date).days
-#         i += 1
-#         revision_date = new_date
-#     return revision_dates
-#
-#
-# d = find_revision_date("2023-05-30")
-# print(d)
