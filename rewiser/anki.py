@@ -50,7 +50,7 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
         while revision_date < current_date:
             new_date = revision_date + timedelta(days=delta * EF)
             revision_dates.append(new_date.strftime("%Y-%m-%d"))
-            delta = new_date - revision_date
+            delta = (new_date - revision_date).days
             revision_date = new_date
         if current_date in revision_dates:
             result.append(file)
