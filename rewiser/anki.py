@@ -60,7 +60,7 @@ def pseudo_anki(filenames: List[str]) -> List[str]:
             revision_dates.append(new_date.strftime("%Y-%m-%d"))
             delta = (new_date - revision_date).days
             revision_date = new_date
-        if current_date in revision_dates:
+        if current_date.strftime("%Y-%m-%d") in revision_dates:
             result.append(file)
     logging.info(f"files selected: {result}")
     return result
