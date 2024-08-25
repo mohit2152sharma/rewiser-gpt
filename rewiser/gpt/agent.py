@@ -11,7 +11,7 @@ from rewiser.utils import read_env_var
 class OpenAIAgent:
     def __init__(self, template_name: str, openai_key: str | None = None) -> None:
         self.openai_key = openai_key or read_env_var("OPENAI_API_KEY", raise_error=True)
-        self.llm = OpenAI(openai_api_key=self.openai_key, model="gpt-4o")  # type: ignore
+        self.llm = OpenAI(openai_api_key=self.openai_key)  # type: ignore
         self.template_name = template_name
 
     def create_template(self) -> PromptTemplate:
