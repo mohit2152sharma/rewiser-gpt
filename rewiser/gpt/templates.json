@@ -1,6 +1,6 @@
 {
   "question_generator": {
-    "prompt_text": "Generate a single question and only one question from the given text.The question must be difficult which the user cannot answer easily.\nText: {input_text}\nFormat instructions for the output: The question must not start with spaces or special characters.",
+    "prompt_text": "Generate a single question and only one question from the given text. On a scale of 1 to 10, where 1 means the question is easy to answer and 10 means the question is extremely difficult to answer, the generated question must have difficulty greater than 8. The question must be related to the subject mentioned in the text.\nText: {input_text}\nFormat instructions for the output: The question must not start with spaces or special characters.",
     "input_variables": [
       "input_text"
     ]
